@@ -1,0 +1,23 @@
+version: 2.1
+
+workflows:
+  deploy:
+    jobs:
+      - deploy
+
+jobs:
+  deploy:
+    docker:
+      - image: cibuilds/hugo:0.104
+    working_directory: ~/hugo
+    environment:
+      HUGO_BUILD_DIR: ~/hugo/public
+    steps:
+      - run: apt-get update && apt-get install -y --no-install-recommends git rsync
+      - checkout
+      - add_ssh_keys
+      - run: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR
+      - run: |
+          echo "Hello!"
+#          echo 'web01.revidian.net ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJiGRY6N9WYQ0vy6cTiwAgNbc6ueJmVo/EafBtmT7bcD6cQMbipYM/KfYQ2lCn2TxqWepZKYoyoVQXgArycCOns=' >> ~/.ssh/known_hosts
+#          rsync -va --delete src/public/ staticweb@web01.revidian.net:www/feliciano.tech/public_html
