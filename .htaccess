@@ -7,6 +7,12 @@ AuthUserFile /home/vallieres/apps/hyprsocial_beta_static/.htpasswd
 AuthType Basic
 Require valid-user
 
+# ================================================
+# Block SEO Crawling
+# ================================================
+
+Header Set X-Robots-Tag "noindex, nofollow"
+
 
 # ================================================
 # General Stuff
