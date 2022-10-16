@@ -17,7 +17,7 @@ jobs:
           - "23:d5:3f:16:a1:c3:b6:7b:5d:0c:af:7a:b0:d5:ea:62"
       - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends git rsync
       - run: |
-          echo 'opal4.opalstack.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDRF9dXxpdkO/sBH6iRp+s3ACw+ZWuYUrED+mw3y2Fm3JxIAP5k2duawQ3McdX8AZjLbZVdNbVI91QEHXnwhsw6D2JfaWgnRM/SvQemoe2ZXXoD/wcwgO9V+iUxFfLb9/F9idZbuoq2M1w6cWytlpw3IADoAaFY4Mspm9NzI7gVN3H3sgea6iZvSrzuxKSMMGUFTUz5kbq5BnEDzNHDtxuXUJ+zcgrebARaNA2w8G9795HBKUyxh2uIuB4q5mbYtOJblIKEUqLBP71tajZXu7r8uid6FBQlTu1hfX1XhDglKHCe611k20BtoTKnMHuHV8dNhTAZMYpNlWnt3nk62h33opal4.opalstack.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDRF9dXxpdkO/sBH6iRp+s3ACw+ZWuYUrED+mw3y2Fm3JxIAP5k2duawQ3McdX8AZjLbZVdNbVI91QEHXnwhsw6D2JfaWgnRM/SvQemoe2ZXXoD/wcwgO9V+iUxFfLb9/F9idZbuoq2M1w6cWytlpw3IADoAaFY4Mspm9NzI7gVN3H3sgea6iZvSrzuxKSMMGUFTUz5kbq5BnEDzNHDtxuXUJ+zcgrebARaNA2w8G9795HBKUyxh2uIuB4q5mbYtOJblIKEUqLBP71tajZXu7r8uid6FBQlTu1hfX1XhDglKHCe611k20BtoTKnMHuHV8dNhTAZMYpNlWnt3nk62h33' >> ~/.ssh/known_hosts
+          echo 'opal4.opalstack.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJdXGMEPQD+Q8duPcEzjLxqRzLBExExFyJS89wMIn5G9' >> ~/.ssh/known_hosts
           cd ~/project
           rsync -va --delete \
           --exclude '_email-simpleapp' --exclude '_theme-stack' --exclude '.circleci' --exclude '.git' --exclude 'email-templates' --exclude 'Hypr-Assets' \
