@@ -15,7 +15,7 @@ jobs:
       - add_ssh_keys:
           fingerprints: 
           - "23:d5:3f:16:a1:c3:b6:7b:5d:0c:af:7a:b0:d5:ea:62"
-      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends git rsync
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends rsync
       - run: |
           echo 'opal4.opalstack.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJdXGMEPQD+Q8duPcEzjLxqRzLBExExFyJS89wMIn5G9' >> ~/.ssh/known_hosts
           cd ~/project
