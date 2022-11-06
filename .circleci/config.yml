@@ -28,6 +28,6 @@ jobs:
           name: Rsync views to OpalStack
           command: |
             rsync -va \
-            --exclude '_email-simpleapp' --exclude '_theme-stack' --exclude '.circleci' --exclude '.git' --exclude 'email-templates' --exclude 'Hypr-Assets' \
+            --exclude '_email-simpleapp' --exclude '_theme-stack' --exclude '.circleci' --exclude '.git' --exclude 'README.md' --exclude '.gitignore' --exclude 'email-templates' --exclude 'Hypr-Assets' \
              ~/project/ hypr_beta@opal4.opalstack.com:/home/hypr_beta/apps/hypr_beta_static --delete
              echo "Done!"
