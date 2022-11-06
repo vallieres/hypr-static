@@ -3,7 +3,7 @@
 # ================================================
 
 AuthName "Member's Area Name"
-AuthUserFile /home/vallieres/apps/hyprsocial_beta_static/.htpasswd
+AuthUserFile /home/hypr_beta/apps/hypr_beta_static/.htpasswd
 AuthType Basic
 Require valid-user
 

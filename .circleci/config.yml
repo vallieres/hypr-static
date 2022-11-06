@@ -3,23 +3,31 @@ version: 2.1
 workflows:
   deploy:
     jobs:
-      - deploy
+      - deploy-to-beta-server
 
 jobs:
-  deploy:
+  deploy-to-beta-server:
     docker:
       - image: cimg/base:2022.10
     working_directory: ~/project
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints: 
+          fingerprints:
           - "23:d5:3f:16:a1:c3:b6:7b:5d:0c:af:7a:b0:d5:ea:62"
-      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends rsync
-      - run: |
-          echo 'opal4.opalstack.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJdXGMEPQD+Q8duPcEzjLxqRzLBExExFyJS89wMIn5G9' >> ~/.ssh/known_hosts
-          cd ~/project
-          rsync -va --delete \
-          --exclude '_email-simpleapp' --exclude '_theme-stack' --exclude '.circleci' --exclude '.git' --exclude 'email-templates' --exclude 'Hypr-Assets' \
-          . hypr_beta@opal4.opalstack.com:/home/hypr_beta/apps/hypr_beta_static
-          echo "Done!"
+      - run:
+          name: Install rsync
+          command: sudo apt-get update && sudo apt-get install -y --no-install-recommends rsync
+      - run:
+          name: Add OpalStack to trusted servers
+          command: echo 'opal4.opalstack.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJdXGMEPQD+Q8duPcEzjLxqRzLBExExFyJS89wMIn5G9' >> ~/.ssh/known_hosts
+      - run:
+          name: Change directory
+          command: cd ~/project
+      - run:
+          name: Rsync views to OpalStack
+          command: |
+            rsync -va \
+            --exclude '_email-simpleapp' --exclude '_theme-stack' --exclude '.circleci' --exclude '.git' --exclude 'README.md' --exclude '.gitignore' --exclude 'email-templates' --exclude 'Hypr-Assets' \
+             ~/project/ hypr_beta@opal4.opalstack.com:/home/hypr_beta/apps/hypr_beta_static --delete
+             echo "Done!"
