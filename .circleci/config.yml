@@ -10,8 +10,6 @@ jobs:
     docker:
       - image: cimg/base:2022.10
     working_directory: ~/project
-    environment:
-      HUGO_BUILD_DIR: ~/hugo/public
     steps:
       - checkout
       - add_ssh_keys:
@@ -33,4 +31,3 @@ jobs:
             --exclude '_email-simpleapp' --exclude '_theme-stack' --exclude '.circleci' --exclude '.git' --exclude 'email-templates' --exclude 'Hypr-Assets' \
              ~/project/ hypr_beta@opal4.opalstack.com:/home/hypr_beta/apps/hypr_beta_static --delete
              echo "Done!"
-     
