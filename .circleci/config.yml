@@ -31,6 +31,6 @@ jobs:
             --exclude '_email-simpleapp' --exclude '_assets' --exclude '.circleci' --exclude '.git' --exclude 'README.md' \
             --exclude '.gitignore' --exclude '.vscode' --exclude 'email-templates' --exclude 'old-pages' \
             ~/project/ hypr_beta@opal4.opalstack.com:/home/hypr_beta/apps/hypr_beta_static --delete
-            rsync -avz --status=progress  ~/project/_assets/http-config/.htaccess hypr_beta@opal4.opalstack.com:/home/hypr_beta/apps/hypr_beta_static
-            rsync -avz --status=progress  ~/project/_assets/http-config/.htpasswd hypr_beta@opal4.opalstack.com:/home/hypr_beta/apps/hypr_beta_static
+            rsync -avz ~/project/_assets/http-config/.htaccess hypr_beta@opal4.opalstack.com:/home/hypr_beta/apps/hypr_beta_static
+            rsync -avz ~/project/_assets/http-config/.htpasswd hypr_beta@opal4.opalstack.com:/home/hypr_beta/apps/hypr_beta_static
             echo "Done!"
