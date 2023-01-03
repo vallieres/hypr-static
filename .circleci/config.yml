@@ -25,9 +25,12 @@ jobs:
           name: Change directory
           command: cd ~/project
       - run:
-          name: Rsync views to OpalStack
+          name: Rsync files to OpalStack
           command: |
             rsync -va \
-            --exclude '_email-simpleapp' --exclude '_theme-stack' --exclude '.circleci' --exclude '.git' --exclude 'README.md' --exclude '.gitignore' --exclude 'email-templates' --exclude 'Hypr-Assets' \
-             ~/project/ hypr_beta@opal4.opalstack.com:/home/hypr_beta/apps/hypr_beta_static --delete
-             echo "Done!"
+            --exclude '_email-simpleapp' --exclude '_assets' --exclude '.circleci' --exclude '.git' --exclude 'README.md' \
+            --exclude '.gitignore' --exclude '.vscode' --exclude 'email-templates' --exclude 'old-pages' \
+            ~/project/ hypr_beta@opal4.opalstack.com:/home/hypr_beta/apps/hypr_beta_static --delete
+            rsync -avz --status=progress  ~/project/_assets/http-config/.htaccess hypr_beta@opal4.opalstack.com:/home/hypr_beta/apps/hypr_beta_static
+            rsync -avz --status=progress  ~/project/_assets/http-config/.htpasswd hypr_beta@opal4.opalstack.com:/home/hypr_beta/apps/hypr_beta_static
+            echo "Done!"
