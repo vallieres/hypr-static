@@ -1,0 +1,14 @@
+version: '3.9'
+
+volumes:
+  assets:
+
+services:
+  apache:
+    image: hypr-static-apache:latest
+    container_name: hypr-static
+    ports:
+      - '3000:80'
+    volumes:
+      - .:/usr/local/apache2/htdocs
+      - assets:/usr/local/apache2/htdocs/_assets
